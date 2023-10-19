@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+        #outer{
+          display: flex;
+            align-items: center;
+            width: 80%;
+            flex-wrap: wrap;
+            background: red;
+            padding: 20px;
+        }
+        #inner{
+          width: 100%;
+            background: pink;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 50px;
+        }
+        #inner>h2{width: 100%;}
+        #inner div{
+          padding: 20px;
+            background: #fff;
+            margin: 20px;
+        }
+        #crtElm,#crtElme,#crtElmen{
+          background: pink;
+            display: block;
+            padding: 20px;
+            border: 10px solid gray;
+            margin: 10px 20px;
+        }
+        #crtElme{background: rgb(139, 214, 64);}
+        #crtElmen{background: rgb(64, 196, 214);}
+      </style>
+  </head>
+  <body>
+    <span id='crtElm'>
+      <p>append child methods</p>
+      </span>
+      <div id='crtElme'>
+        <h2>append child insert Adjacent Element methods</h2>
+      </div>
+      <div id='crtElmen'>
+        <h2>append child insert Adjacent HTML methods</h2>
+      </div>
+      <ul id='fruit'>
+        <li>Orange</li>
+        <li>Grape</li>
+        <li>Apple</li>
+        <li>Mango</li>
+      </ul>
+      <ul id='fruit2'>
+        <li>Orange</li>
+        <li>Grape</li>
+        <li>Apple</li>
+        <li>Mango</li>
+      </ul>
+      <!-- <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Position</th>
+            <th>Exp.</th>
+            <th>CTC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> </td>
+          </tr>
+        </tbody>
+      </table> -->
+      <div id='outer'>
+        <h2>Outer</h2>
+        <div id='inner'>
+          <h2>Inner</h2>
+          <div>A</div>
+          <div>B</div>
+          <div id='childC'>C</div>
+          <div>D</div>
+          <div>E</div>
+        </div>
+      </div>
+    <script>
+      //   //callback function but not run yet
+        function myDisplaying(some){
+        document.getElementById('demo')
+        }
+        function myCalculator(num1,num2,myCallback){
+          let sum = num1 + num2 ;
+          myCallback(sum);
+        }
+        myCalculator(5,5,myDisplaying);
+
+        //filter method
+        var arr = ['apple','orange','mango','apple','apple','grapes','pineapple','orange'];
+        function removeDuplicate(arr){
+          return arr.filter((item,index)=>
+            arr.indexOf(item) === index
+          );
+        }
+        console.log(removeDuplicate(arr));
+        //Set method
+        function rmvDblct(arr){
+          return [...new Set(arr)]
+        }
+        console.log(rmvDblct(arr));
+        //indexOf method
+        function rmvDblct2(arr){
+          var uniq = [];
+          for(let i = 0; i < arr.length; i++){
+            if(uniq.indexOf(arr[i]) === -1){
+              uniq.push(arr[i]);
+            }
+          }
+          return uniq;
+        }
+        console.log(rmvDblct2(arr))
+      //last night update 9 40
+      // for loop
+
+      for(let a = 1; a <= 5 ;a++){
+        for(let b = 1; b <= a; b++){
+          document.write(b)
+        }
+        document.write('<br>')
+      }
+
+      for(let a = 1; a <= 5;a++){
+        let bc = a ;
+        for(let b = 1; b <= bc;b++){
+          document.write(a);
+        }
+        document.write('<br>')
+      }
+      for(let a = 5; a>= 1; a--){
+        let bc = a;
+        for(let b = 1; b <= bc; b++){
+          document.write(bc);
+        }
+        document.write('<br>')
+      }
+      for(let a = 5; a>=1;a--){
+        for(let b = a; b >=1;b--){
+          document.write(b);
+        }
+        document.write('<br>')
+      }
+      for(let a = 5;a>=1; a--){
+        for(let b = a;b<=5;b++){
+          document.write(a);
+        }
+        document.write('<br>')
+      }
+      for(let a = 5;a>=1;a--){
+        for(let b = 1;b<=a;b++){
+          document.write(b);
+        }
+        document.write('<br>')
+      }
+
+      let Day;
+      var date = new Date();
+      var days = date.getDay()
+      console.log(date.getDate())
+
+      switch (days) {
+        case 0:  Day = "Sunday";
+          break;
+          case 1:  Day = "Monday";
+          break;
+          case 2:  Day = "Tuesday";
+          break;
+          case 3:  Day = "Wednesday";
+          break;
+          case 4:  Day = "Thursday";
+          break;
+          case 5:  Day = "Friday";
+          break;
+          case 6:  Day = "Saturday";
+          break;
+      
+        default:
+          break;
+      }
+      document.write(Day);
+      // ternary operator
+      let xv = 5;
+      let zv;
+      (xv > 10)? zv="true": zv="false";
+      console.log(zv);
+      // var prmt = confirm("this is Promt");
+      // alert(prmt)
+      // prmt? alert(true):alert(false)
+      document.write('<br>')
+      var tblData = [
+        ['Ankit',28,'UI Developer','3 Years','3.5 LPA'],
+        ['Rishabh',26,'Frontend Developer','3 Years','7 LPA'],
+        ['Hemant',24,'UI/UX Designer', '2 Years','5 LPA']
+      ]
+      // map method
+      var mapa = tblData.map((item,index)=>{
+        return index + ' ' + item + '<br>';
+      }) 
+      document.write(mapa);
+
+      for(var aData = 0; aData < tblData.length;aData++){
+        console.log(tblData)
+      }
+      //filter 
+      var arrData = [18,23,12,14,20];
+      var arrB = arrData.filter(chck);
+      function chck(age){
+        return age >= 18;
+      }
+      console.log(arrB);
+      //forEach
+      var feach = [18,23,12,14,20];
+      feach.forEach(loop);
+      function loop(value,index){
+        document.write(index + ' : ' + value + '<br>');
+      }
+      //object
+      var obj1 = {
+        fname: 'Ankit',
+        lname: 'Kumar',
+        age: 28,
+        fullName: function(){
+        return this.fname + ' ' + this.lname
+        }
+      }
+      console.log(obj1.fullName());
+      //for in loop
+      var obj2 = {
+        fname: 'ankit',
+        lname: 'kumar',
+        age: 25,
+        city: 'delhi'
+      }
+      for(var key1 in obj2){
+        document.write(obj2[key1] + '<br>');
+      }
+      //map method
+      var mapb = [
+        {
+          name: 'Ankit',
+          age: 25,
+          city: 'delhi',
+          
+        },
+        {
+          name: 'rishabh',
+          age: 25,
+          city: 'gaziyabad'
+        }
+      ];
+      var mapc = mapb.map((item,index)=>{
+        return item.name ;
+      });
+      document.write(mapc)
+      // function mapFunc(x){
+      //   return x.name + x.age + x.city;
+      // }
+
+      //math method
+      // var matharr = [13,23,45,56,32]
+      var mathmax = Math.max(13,23,45,56,32);
+      console.log(mathmax);
+      var mathmin = Math.min(13,23,45,56,32);
+      console.log(mathmin);
+      // date method
+      var dt = new Date();
+      var todaydt = dt.toDateString();
+      console.log(todaydt);
+      var birthdt = dt.getDate() + '/' + (dt.getMonth()+1) + '/' + dt.getFullYear();
+
+      console.log(birthdt );
+
+      // append methods
+
+      var crtEl = document.createElement('p');
+
+      var crtTxtnode = document.createTextNode('just example');
+      crtEl.appendChild(crtTxtnode);
+      document.getElementById('crtElm').appendChild(crtEl);
+      var newText = document.getElementById('crtElm');
+      newText.insertBefore(crtEl,newText.childNodes[0])
+      console.log(crtEl);
+      console.log(crtTxtnode);
+
+      // insert Adjacent methods
+      // insert Adjacent element
+      var newInserTeg = document.createElement('p');
+      var newInsertTeg = document.createTextNode('insert adjacent element beforebegin');
+      newInserTeg.appendChild(newInsertTeg);
+      var trgtcrtElme = document.getElementById('crtElme');
+      // try afterbegin,afterend,beforeend
+      trgtcrtElme.insertAdjacentElement('beforebegin',newInserTeg);
+
+      // insert Adjacent HTML
+      var insertTeg = '<h2>insert adjacent HTML afterbegin</h2>';
+      var trgtTeg = document.getElementById('crtElmen');
+      // try afterend,beforebegin,beforeend
+      trgtTeg.insertAdjacentHTML('afterbegin',insertTeg);
+
+      // replace and remove
+      var crtFrtEl = document.createElement('li');
+      var crtFrt = document.createTextNode('PineApple');
+      crtFrtEl.appendChild(crtFrt);
+      var trgtFrt = document.getElementById('fruit');
+      var rplcFrt =   trgtFrt.children[0];
+      // replacechild
+      trgtFrt.replaceChild(crtFrtEl,rplcFrt);
+      // remove child
+      var rmvFrt =   trgtFrt.children[1];
+      trgtFrt.removeChild(rmvFrt);
+      console.log(trgtFrt);
+
+      //cloneNode
+      var clTrgt = document.getElementById('fruit').children[1];
+      var copyCln = clTrgt.cloneNode(true);
+      document.getElementById('fruit2').appendChild(copyCln);
+    </script>
+    <script>
+      const num = '22.22';
+      const parse = +num
+      console.log(parse);
+  
+      //ternary
+      function getFee(isMem){
+        return (isMem? '20$' : '30$');
+      }
+      console.log(getFee(false));
+      
+      // object oops concept
+      //object litrel
+      let mySelf = {
+        first_name : 'Ankit',
+        last_name : 'Kumar',
+        //method
+        phone :{
+          mob : 79824892,
+          line: 'no'
+        },
+        getFunc : function (){
+          return (`hi my name is ${mySelf.first_name} ${mySelf.last_name} and my mobile number is ${mySelf.phone.mob}`)
+        }
+      }
+      console.log(mySelf.getFunc());
+      //object constrctor
+      function person(fname,lname){
+        this.name1 = fname,
+        this.name2 = lname
+      }
+      let person1 = new person('ankit','kumar');
+      let person2 = new person('ayush','arya');
+      console.log(person2.name1,person2.name2);
+      //object.create
+      let coder = {
+        isStudy : false,
+        printIntro : function(){
+          console.log(`My name is ${this.name}. Am i studing?:${this.isStudy}.`)
+        }
+      }
+      // create new object .....
+      let me = Object.create(coder);
+      me.name = 'Ayush';
+      me.isStudy = true;
+      me.printIntro();
+  
+      // Class 
+      class vichle  {
+        constructor(name,maker,engine){
+          this.name = name,
+          this.maker = maker,
+          this.engine = engine
+        }
+        getDetails(){
+          return (`${this.name} bike ek jabar dast bike he jise ${this.maker} ne banaya he jisme ${this.engine} power ka engine laga hua he`);
+        }
+      }
+      let vichle1 = new vichle('hayabusa','suzuki','1340cc');
+      let vichle2 = new vichle('ninja','kawasaki','990cc');
+      console.log(vichle2.getDetails());
+  
+      // tradtional way class
+      function vichleNew(name,maker,engine){
+        this.name = name,
+        this.maker = maker,
+        this.engine = engine
+      }
+      vichleNew.prototype.getNewdetail = function(){
+        console.log(`${this.name} bike ek bakwas bike he jise ${this.maker} ne banaya he jisme ${this.engine} power ka engine laga hua he`);
+      }
+      let vichle1new = new vichleNew('platina','bajaj','150cc');
+      let vichle2New = new vichleNew('bikki','tvs','100cc');
+      vichle1new.getNewdetail();
+  
+      // encapsulation
+      class personol{
+        constructor(name,id){
+          this.name = name,
+          this.id = id
+        }
+        addRess(addr){
+          this.addr = addr
+        }
+        getPersonal(){
+          console.log(`my name is ${this.name} and my agent id is ${this.id} or mere address ka ${this.addr}`)
+        }
+      }
+      let personol1 = new personol('James Bond', '0007' );
+      personol1.addRess('kuch ata pata nahi he');
+      personol1.getPersonal();
+  
+      //abstraction example encapsulation
+      function perDetail(fname,lname){
+        let firstName = fname;
+        let lastName = lname;
+        let getNoacces = function(){
+          return( `First name is ${firstName} and Last name is ${lastName}`);
+        }
+        this.getAccess = function(){
+          return( `First name is ${firstName} and Last name is ${lastName}`);
+        }
+      }
+      let perDetailNew = new perDetail('Ayusman','Khurana');
+      console.log(perDetailNew.firstName + '  ' + perDetail.lastName + '  ' + perDetailNew.getNoacces);
+      console.log(perDetailNew.getAccess());
+     
+      //inheritance
+      class boy{
+        constructor(name){
+          this.name = name
+        }
+        toString(){
+          return (`my name is ${this.name} me duniya me akela hun. `);
+        }
+      }
+      class student extends boy{
+        constructor(name,id){
+          super(name);
+          // this.name = name;
+          this.id = id;
+        }
+        toString(){
+          return (`my name is ${this.name} golservey me duniya me akela hun. room no. ${this.id}`);
+        }
+      }
+      let boyNew = new student('Amar Akbar Anthony', 22);
+      console.log(boyNew.toString());
+      ///new
+      
+      
+     </script>
+  </body>
+</html>

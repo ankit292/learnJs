@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+  </head>
+  <body>
+      <h1>Learn js</h1>
+      <script>
+            for(let i = 1; i<=5; i++){
+                for(let a = 1; a<=i; a++){
+                  document.write(a)
+                }
+                document.write('<br>')
+            }
+            document.write('<br>')
+            for(let i = 1; i<=5; i++){
+                for(let a = 1; a<=i; a++){
+                  document.write(i)
+                }
+                document.write('<br>')
+            }
+            document.write('<br>')
+            for(let i = 5; i>=1; i--){
+                for(let a = 1; a<=i; a++){
+                  document.write(i)
+                }
+                document.write('<br>')
+            }
+            document.write('<br>')
+            for(let i = 5; i>=1; i--){
+              for(let a = i; a>=1; a--){
+                  document.write(a)
+              }
+              document.write('<br>')
+            }
+            document.write('<br>')
+            for(let i = 5; i>=1;i--){
+              for(let a = 5; a>=i;a--){
+                  document.write(i)
+              }
+              document.write('<br>')
+            }
+            document.write('<br>')
+            for(let i = 5; i>=1;i--){
+              for(let a = 1;a<=i;a++ ){
+                  document.write(a)
+              }
+              document.write('<br>')
+            }
+
+            var valU = 50;
+            var zVal;
+            (valU > 60)? zVal ="it is true":zVal="it is flase";
+            document.write(zVal);
+            document.write('<br>')
+            var day = 1;
+            var weekDay;
+
+            switch(day){
+              case 0: weekDay = 'today is sunday';
+              break;
+              case 1: weekDay = 'today is monday';
+              break;
+              case 2: weekDay = 'today is tuesday';
+              break;
+              case 3: weekDay = 'today is wednesday';
+              break;
+              case 4: weekDay = 'today is thursday';
+              break;
+              case 5: weekDay = 'today is friday';
+              break;
+              case 5: weekDay = 'today is saturday';
+              break;
+
+              default : weekDay = 'today is funday';
+
+            }
+            document.write(weekDay.toUpperCase());
+            document.write('<br>')
+
+            function fun(func1, func2) {
+              document.write(func1+func2);
+            }
+            fun(20,50);
+            document.write('<br>')
+            fun(50,50);
+            document.write('<br>')
+
+            function sub(math,eng,hindi){
+              var sum = math+eng+hindi;
+              return sum;
+            }
+            function prcent(ttl){
+              var ttlPer = ttl/300*100;
+              document.write(ttlPer);
+            }
+            var ttl = sub(80,80,80);
+            prcent(ttl);
+            document.write('<br>');
+            for(let a = 1;a<=10;a++){
+              if(a==3){
+                document.write('hey ' + a + '<br>');
+                // break;
+                continue;
+              }
+              document.write('Number ' + a + '<br>');
+            }
+            document.write('<br>');
+            for(let a = 1; a<=10;a++){
+              if(a % 2 == 0){
+                document.write(a + '<br>')
+              }
+            }
+
+            var a;
+            for(a=1;a<=100;a++){
+              var ab = a + 9;
+              for(let b = a;b<=ab;b++){
+                document.write(b + ' ')
+                
+              }
+              document.write('<br>')
+              a = ab;
+            }
+            document.write('<br>')
+            var Find = [20,50,70,100];
+            document.write('find method ' + Find + '<br>');
+            var bb = Find.find(passed);
+            //var bb = Find.findIndex(passed);
+            function passed(pass){
+              return pass > 50;
+            }
+            document.write(bb);
+
+            
+      </script>
+  </body>
+</html>
