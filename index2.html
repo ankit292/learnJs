@@ -37,12 +37,84 @@
         }
         #crtElme{background: rgb(139, 214, 64);}
         #crtElmen{background: rgb(64, 196, 214);}
+        #bx2{
+          display: inline-block;
+          width: 100px;
+          height: 100px;
+          background: red;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: 0.3s;
+        }
+        .bx1{
+          position: relative;
+          width: 100%;
+          height: 500px;
+          border: 1px solid gray;
+        }
+        #tmOut{
+          display: inline-block;
+          width: 100px;
+          height: 100px;
+          background: red;
+          transition: 0.3s;
+        }
       </style>
   </head>
-  <body>
+  <body id="main" onresize="resizeFunc()">
+    <h2>window open & close</h2>
+    <button id="wdOpn">window open</button>
+    <button id="wdCls">window close</button>
+    <h2>Browser Object Model</h2>
+    <h2>Set time event</h2>
+    <p>current time</p>
+    <span id="tm"></span>
+    <div class="bx1">
+      <span id="bx2"></span>
+    </div>
+    <h2>Set time out</h2>
+    <div id="tmOut"></div>
+    <button id="btnClr">Clear Timeout</button>
+
+
+    <h2>form events</h2>
+    <form>
+      <label for="fname">First name:</label><br>
+      <input type="text" id="fname" name="fname" value="First name" class="inpt"><br>
+
+      <label for="lname">Last name:</label><br>
+      <input type="text" id="lname" name="lname" value="Last name" class="inpt"><br>
+
+      <label for="select">Select:</label><br>
+      <select name="select" id="select">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+      </select>
+      <input type="submit">
+    </form>
+    <div id="dav" style="border: 1px solid red;padding: 20px;font-size: 16px;font-weight: bold;"></div>
+    <div id="dav2" style="border: 1px solid red;padding: 20px;font-size: 16px;font-weight: bold;"></div>
+    <div id="dav3" style="border: 1px solid red;padding: 20px;font-size: 16px;font-weight: bold;"></div>
+    <h2>dom equalNodes</h2>
+    <ul id='equal1'>
+      <li>Orange</li>
+      <li>Grape</li>
+      <li>Apple</li>
+      <li>Mango</li>
+    </ul>
+    <ul id='equal2'>
+      <li>Orange</li>
+      <li>Patato</li>
+      <li>Tomato</li>
+      <li>Garlic</li>
+    </ul>
+
     <span id='crtElm'>
       <p>append child methods</p>
-      </span>
+    </span>
       <div id='crtElme'>
         <h2>append child insert Adjacent Element methods</h2>
       </div>
@@ -56,31 +128,15 @@
         <li>Mango</li>
       </ul>
       <ul id='fruit2'>
-        <li>Orange</li>
-        <li>Grape</li>
-        <li>Apple</li>
-        <li>Mango</li>
+        <li>Onion</li>
+        <li>Patato</li>
+        <li>Tomato</li>
+        <li>Garlic</li>
       </ul>
-      <!-- <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Position</th>
-            <th>Exp.</th>
-            <th>CTC</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td> </td>
-          </tr>
-        </tbody>
-      </table> -->
       <div id='outer'>
         <h2>Outer</h2>
         <div id='inner'>
-          <h2>Inner</h2>
+          <h2 id="h2">Inner</h2>
           <div>A</div>
           <div>B</div>
           <div id='childC'>C</div>
@@ -88,246 +144,7 @@
           <div>E</div>
         </div>
       </div>
-    <script>
-      //   //callback function but not run yet
-        function myDisplaying(some){
-        document.getElementById('demo')
-        }
-        function myCalculator(num1,num2,myCallback){
-          let sum = num1 + num2 ;
-          myCallback(sum);
-        }
-        myCalculator(5,5,myDisplaying);
 
-        //filter method
-        var arr = ['apple','orange','mango','apple','apple','grapes','pineapple','orange'];
-        function removeDuplicate(arr){
-          return arr.filter((item,index)=>
-            arr.indexOf(item) === index
-          );
-        }
-        console.log(removeDuplicate(arr));
-        //Set method
-        function rmvDblct(arr){
-          return [...new Set(arr)]
-        }
-        console.log(rmvDblct(arr));
-        //indexOf method
-        function rmvDblct2(arr){
-          var uniq = [];
-          for(let i = 0; i < arr.length; i++){
-            if(uniq.indexOf(arr[i]) === -1){
-              uniq.push(arr[i]);
-            }
-          }
-          return uniq;
-        }
-        console.log(rmvDblct2(arr))
-      //last night update 9 40
-      // for loop
-
-      for(let a = 1; a <= 5 ;a++){
-        for(let b = 1; b <= a; b++){
-          document.write(b)
-        }
-        document.write('<br>')
-      }
-
-      for(let a = 1; a <= 5;a++){
-        let bc = a ;
-        for(let b = 1; b <= bc;b++){
-          document.write(a);
-        }
-        document.write('<br>')
-      }
-      for(let a = 5; a>= 1; a--){
-        let bc = a;
-        for(let b = 1; b <= bc; b++){
-          document.write(bc);
-        }
-        document.write('<br>')
-      }
-      for(let a = 5; a>=1;a--){
-        for(let b = a; b >=1;b--){
-          document.write(b);
-        }
-        document.write('<br>')
-      }
-      for(let a = 5;a>=1; a--){
-        for(let b = a;b<=5;b++){
-          document.write(a);
-        }
-        document.write('<br>')
-      }
-      for(let a = 5;a>=1;a--){
-        for(let b = 1;b<=a;b++){
-          document.write(b);
-        }
-        document.write('<br>')
-      }
-
-      let Day;
-      var date = new Date();
-      var days = date.getDay()
-      console.log(date.getDate())
-
-      switch (days) {
-        case 0:  Day = "Sunday";
-          break;
-          case 1:  Day = "Monday";
-          break;
-          case 2:  Day = "Tuesday";
-          break;
-          case 3:  Day = "Wednesday";
-          break;
-          case 4:  Day = "Thursday";
-          break;
-          case 5:  Day = "Friday";
-          break;
-          case 6:  Day = "Saturday";
-          break;
-      
-        default:
-          break;
-      }
-      document.write(Day);
-      // ternary operator
-      let xv = 5;
-      let zv;
-      (xv > 10)? zv="true": zv="false";
-      console.log(zv);
-      // var prmt = confirm("this is Promt");
-      // alert(prmt)
-      // prmt? alert(true):alert(false)
-      document.write('<br>')
-      var tblData = [
-        ['Ankit',28,'UI Developer','3 Years','3.5 LPA'],
-        ['Rishabh',26,'Frontend Developer','3 Years','7 LPA'],
-        ['Hemant',24,'UI/UX Designer', '2 Years','5 LPA']
-      ]
-      // map method
-      var mapa = tblData.map((item,index)=>{
-        return index + ' ' + item + '<br>';
-      }) 
-      document.write(mapa);
-
-      for(var aData = 0; aData < tblData.length;aData++){
-        console.log(tblData)
-      }
-      //filter 
-      var arrData = [18,23,12,14,20];
-      var arrB = arrData.filter(chck);
-      function chck(age){
-        return age >= 18;
-      }
-      console.log(arrB);
-      //forEach
-      var feach = [18,23,12,14,20];
-      feach.forEach(loop);
-      function loop(value,index){
-        document.write(index + ' : ' + value + '<br>');
-      }
-      //object
-      var obj1 = {
-        fname: 'Ankit',
-        lname: 'Kumar',
-        age: 28,
-        fullName: function(){
-        return this.fname + ' ' + this.lname
-        }
-      }
-      console.log(obj1.fullName());
-      //for in loop
-      var obj2 = {
-        fname: 'ankit',
-        lname: 'kumar',
-        age: 25,
-        city: 'delhi'
-      }
-      for(var key1 in obj2){
-        document.write(obj2[key1] + '<br>');
-      }
-      //map method
-      var mapb = [
-        {
-          name: 'Ankit',
-          age: 25,
-          city: 'delhi',
-          
-        },
-        {
-          name: 'rishabh',
-          age: 25,
-          city: 'gaziyabad'
-        }
-      ];
-      var mapc = mapb.map((item,index)=>{
-        return item.name ;
-      });
-      document.write(mapc)
-      // function mapFunc(x){
-      //   return x.name + x.age + x.city;
-      // }
-
-      //math method
-      // var matharr = [13,23,45,56,32]
-      var mathmax = Math.max(13,23,45,56,32);
-      console.log(mathmax);
-      var mathmin = Math.min(13,23,45,56,32);
-      console.log(mathmin);
-      // date method
-      var dt = new Date();
-      var todaydt = dt.toDateString();
-      console.log(todaydt);
-      var birthdt = dt.getDate() + '/' + (dt.getMonth()+1) + '/' + dt.getFullYear();
-
-      console.log(birthdt );
-
-      // append methods
-
-      var crtEl = document.createElement('p');
-
-      var crtTxtnode = document.createTextNode('just example');
-      crtEl.appendChild(crtTxtnode);
-      document.getElementById('crtElm').appendChild(crtEl);
-      var newText = document.getElementById('crtElm');
-      newText.insertBefore(crtEl,newText.childNodes[0])
-      console.log(crtEl);
-      console.log(crtTxtnode);
-
-      // insert Adjacent methods
-      // insert Adjacent element
-      var newInserTeg = document.createElement('p');
-      var newInsertTeg = document.createTextNode('insert adjacent element beforebegin');
-      newInserTeg.appendChild(newInsertTeg);
-      var trgtcrtElme = document.getElementById('crtElme');
-      // try afterbegin,afterend,beforeend
-      trgtcrtElme.insertAdjacentElement('beforebegin',newInserTeg);
-
-      // insert Adjacent HTML
-      var insertTeg = '<h2>insert adjacent HTML afterbegin</h2>';
-      var trgtTeg = document.getElementById('crtElmen');
-      // try afterend,beforebegin,beforeend
-      trgtTeg.insertAdjacentHTML('afterbegin',insertTeg);
-
-      // replace and remove
-      var crtFrtEl = document.createElement('li');
-      var crtFrt = document.createTextNode('PineApple');
-      crtFrtEl.appendChild(crtFrt);
-      var trgtFrt = document.getElementById('fruit');
-      var rplcFrt =   trgtFrt.children[0];
-      // replacechild
-      trgtFrt.replaceChild(crtFrtEl,rplcFrt);
-      // remove child
-      var rmvFrt =   trgtFrt.children[1];
-      trgtFrt.removeChild(rmvFrt);
-      console.log(trgtFrt);
-
-      //cloneNode
-      var clTrgt = document.getElementById('fruit').children[1];
-      var copyCln = clTrgt.cloneNode(true);
-      document.getElementById('fruit2').appendChild(copyCln);
-    </script>
     <script>
       const num = '22.22';
       const parse = +num
@@ -460,5 +277,7 @@
       
       
      </script>
+     
+     <script src="js/main.js"></script>
   </body>
 </html>
