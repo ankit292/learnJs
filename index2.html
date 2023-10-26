@@ -63,6 +63,28 @@
       </style>
   </head>
   <body id="main" onresize="resizeFunc()">
+    <div>
+      <h2>ctrlKey,altKey,shiftKey and metaKey</h2>
+      <button id="ctrlKey">ctrlKey</button>
+      <button id="altKey">altKey</button>
+      <button id="shiftKey">shiftKey</button>
+      <button id="metaKey">metaKey</button>
+    </div>
+    <div style="position: fixed;right: 0;">
+      <h2>screenX <span id="screenX"></span> and screenY <span id="screenY"></span></h2>
+      <h2>pageX <span id="pageX"></span> and pageY <span id="pageY"></span></h2>
+      <h2>clientX <span id="clntX"></span> and clientY <span id="clntY"></span></h2>
+    </div>
+    <h2>pageYOffse and xOffset
+      <span id="offsetPrnt"></span>
+    </h2>
+    <h2>history object</h2>
+    <button onclick="backPg()">Back page</button>
+    <button onclick="ForwrdPg()">Forword page</button>
+    <h2>location object property</h2>
+    <h2>scrollBy and scrollTo</h2>
+    <button onclick="scrlDown()" style="position: fixed;top: 0px; z-index: 9;">Scroll Down</button>
+    <button onclick="scrlUp()" style="position: fixed;bottom: 0px;z-index: 9;">Scroll Down</button>
     <h2>window open & close</h2>
     <button id="wdOpn">window open</button>
     <button id="wdCls">window close</button>
@@ -279,5 +301,6 @@
      </script>
      
      <script src="js/main.js"></script>
+     <script type="module" src="./js/main.js"></script>
   </body>
 </html>

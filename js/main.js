@@ -1,7 +1,112 @@
+
+export var xyz = 'Ayush Arya';
+// ctrlKey,altKey,shiftKey and metaKey
+var trgtCtrKey = document.querySelector('#ctrlKey');
+var trgtAltKey = document.querySelector('#altKey');
+var trgtShiftKey = document.querySelector('#shiftKey');
+var trgtMetaKey = document.querySelector('#metaKey');
+// ctrlKey event trigger
+trgtCtrKey.addEventListener('click',(e)=>{
+  var ctrl = e.ctrlKey;
+  if (ctrl === true) {
+    alert('Good Work');
+  }else{
+    alert('Please press (ctrl) key then click button');
+  }
+});
+// altKey event trigger
+trgtAltKey.addEventListener('click',(e)=>{
+  var alt = e.altKey;
+  if (alt === true) {
+    alert('Good Work');
+  }else{
+    alert('Please press (alt) key then click button');
+  }
+});
+// shiftKey event trigger
+trgtShiftKey.addEventListener('click',(e)=>{
+  var shift = e.shiftKey;
+  if (shift === true) {
+    alert('Good Work');
+  }else{
+    alert('Please press (shift) key then click button');
+  }
+});
+// metaKey event trigger
+trgtMetaKey.addEventListener('click',(e)=>{
+  var meta = e.metaKey;
+  if (meta === true) {
+    alert('Good Work');
+  }else{
+    alert('Please press (meta) key then click button');
+  }
+});
+
+
 // Browser object model
+   // clientX and clientY
+   var trgtX = document.querySelector('#clntX');
+   var trgtY = document.querySelector('#clntY');
+   // pageX and pageY
+   var trgtXX = document.querySelector('#pageX');
+   var trgtYY = document.querySelector('#pageY');
+   // screenX and screenY
+   var trgtXXX = document.querySelector('#screenX');
+   var trgtYYY = document.querySelector('#screenY');
+   document.addEventListener('mousemove',(event)=>{
+    // declaire client X  Y
+    var x = event.clientX;
+    var y = event.clientY;
+    // declaire page X  Y
+    var xx = event.pageX;
+    var yy = event.pageY;
+    // declaire screen X  Y
+    var xxx = event.screenX;
+    var yyy = event.screenY;
+
+    // print client X  Y
+    trgtX.innerHTML = x;
+    trgtY.innerHTML = y;
+    // print page X  Y
+    trgtXX.innerHTML = xx;
+    trgtYY.innerHTML = yy;
+    // print screen X  Y
+    trgtXXX.innerHTML = xxx;
+    trgtYYY.innerHTML = yyy;
+   })
+  //pageYOffse and xOffset
+  var offSettrgt = document.getElementById('offsetPrnt')
+  window.addEventListener('scroll',function(){
+    // console.clear();
+    offSettrgt.innerHTML = 'Y offset' + window.pageYOffset;
+    offSettrgt.style.position = 'fixed';
+    // console.log(window.pageXOffset);
+  });
+
+
+  // history object
+  function backPg(){
+    window.history.back();
+  }
+  function ForwrdPg(){
+    window.history.forward();
+  }
+
+  // location object property
+  console.log(location);
+  //scrollBy and scrollTo
+  function scrlDown(){
+    window.scrollBy(0,20);
+    // window.scrollTo(0,20);
+  }
+  function scrlUp(){
+    window.scrollBy(0,-20);
+    // window.scrollTo(0,-20);
+  }
+
    //height & width
   function resizeFunc(){
-    console.clear();
+    // console.clear();
     
     var iHght = window.innerHeight;
     console.log('inner height : ' + iHght);
@@ -374,3 +479,4 @@ console.log(hasAttr2);
       var birthdt = dt.getDate() + '/' + (dt.getMonth()+1) + '/' + dt.getFullYear();
 
       console.log(birthdt );
+console.log(xyz)
