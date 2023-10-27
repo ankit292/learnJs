@@ -1,196 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Advance JavaScript</title>
-</head>
-<body>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  </head>
+  <body>
     <h1>Advance JavaScript</h1>
+
+    <h2>fetch and ajax</h2>
+    <script>
+      // https://jsonplaceholder.typicode.com/posts
+      function ftApi(){fetch("https://jsonplaceholder.typicode.com/posts").then((response)=>{
+            return response.text();
+          }).then((result)=>{
+            var trgt;
+            for(let x in result){
+              trgt += result[x];
+              console.log(trgt);
+            }
+            console.log(result);
+          }).catch(err =>{console.log(err)});
+        }
+        ftApi();
+    </script>
+
+    <h2>Ajax</h2>
+    <p class="xhttp"></p>
+    <script>
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+          document.querySelector('.xhttp').innerHTML = this.responseText;
+        }else if(this.readyState == 4 && this.status == 404){document.querySelector('.xhttp').innerHTML = 'file not found 404'}
+      };
+      xhttp.open('GET','./js/readme.txt',true);
+      xhttp.send();
+
+    </script>
+
+    <h2>Promise.all</h2>
+    <script>
+      let p1 = new Promise(promAll(10,'First Promise'));
+      let p2 = new Promise(promAll(20,'Secon Promise'));
+      let p3 = new Promise(promAll(30,'Third Promise'));
+      let p4 = new Promise((resolve,reject)=>{ reject('fourth condition reject')});
+      function promAll(amnt,mssg){
+       return function(resolve,reject){
+        setTimeout(()=>{
+          console.log(`The ${mssg} massage is resolve`)
+          resolve(amnt)
+        },amnt * 100 );
+       }
+      }
+      var total = 0;
+      Promise.all([p1,p2,p3,p4]).then((rslv)=>{
+        for(let i in rslv){total += rslv[i]}
+        console.log(rslv);
+        console.log(`Total: ${total}`);
+      }).catch(err =>{ console.log(err)});
+    </script>
+
+    <h2>Promises</h2>
+    <script>
+      // var aa = prompt("type Value");
+      // var aNum = Number.parseInt(aa);
+      function prom(){
+        return new Promise((resolve, reject) => {
+            console.log('condition pending please wait')
+          setTimeout(() => {
+            $.get('https://jsonplaceholder.typicode.com/posts',(data)=>{
+              console.log(data);
+            }).fail(err=>{
+              reject('json data not provided');
+            });
+          }, 2000);
+        });
+      }
+      prom().then((result) => {
+        console.log(result);
+      }).catch((err) => {
+        console.log(err);
+      });
+    </script>
     <h2>OOPs class and object</h2>
     <p class="clsObj"></p>
     <script>
-        class car{
-            constructor(cName,color,engine,seats,ac,price){
-                this.carName = cName;
-                this.carColor = color;
-                this.carEngien = engine;
-                this.carSeats = seats;
-                this.carAc = ac;
-                this.carPrice = price;
-            }
-            carInfo(){
-              return  (`<p style="margin:0 0;"><b> me ${this.carName} ek behtrin car he jiska color ${this.carColor} he jiska engien ${this.carEngien} he jo bahot acha he sath hi yah ${this.carSeats} seater car he jiska price ${this.carPrice} he. kiya isme ac kam karta he? => '${this.carAc}</b>'</p>`);
-               
-            }
-            static staticMethod(name){
-                console.log(name);
-            }
+      class car {
+        constructor(cName, color, engine, seats, ac, price) {
+          this.carName = cName;
+          this.carColor = color;
+          this.carEngien = engine;
+          this.carSeats = seats;
+          this.carAc = ac;
+          this.carPrice = price;
         }
-        class continent extends car{
-            constructor(cName,color,engine,seats,ac,price,country){
-                super(cName,color,engine,seats,ac,price)
-                this.country = country;
-            }
-            carCountry(){
-                let clsObjTrgt
-                return  document.querySelector('.clsObj').innerHTML =`${this.country}  ${super.carInfo()}`;
-            }
-            
+        carInfo() {
+          return `<p style="margin:0 0;"><b> me ${this.carName} ek behtrin car he jiska color ${this.carColor} he jiska engien ${this.carEngien} he jo bahot acha he sath hi yah ${this.carSeats} seater car he jiska price ${this.carPrice} he. kiya isme ac kam karta he? => '${this.carAc}</b>'</p>`;
         }
-        // let oCar = new car('shift','red','1200cc',5,'Yes',555000);
-        // oCar.carInfo();
-        car.staticMethod('Static Method');
-        let countryTrg = new continent('shift','red','1200cc',5,'Yes',555000,'<h2 style="margin:0 0;color:red;">India</h2>');
-        countryTrg.carCountry();
+        static staticMethod(name) {
+          console.log(name);
+        }
+      }
+      class continent extends car {
+        constructor(cName, color, engine, seats, ac, price, country) {
+          super(cName, color, engine, seats, ac, price);
+          this.country = country;
+        }
+        carCountry() {
+          let clsObjTrgt;
+          return (document.querySelector(".clsObj").innerHTML = `${
+            this.country
+          }  ${super.carInfo()}`);
+        }
+      }
+      // let oCar = new car('shift','red','1200cc',5,'Yes',555000);
+      // oCar.carInfo();
+      car.staticMethod("Static Method");
+      let countryTrg = new continent(
+        "shift",
+        "red",
+        "1200cc",
+        5,
+        "Yes",
+        555000,
+        '<h2 style="margin:0 0;color:red;">India</h2>'
+      );
+      countryTrg.carCountry();
     </script>
 
     <h2>Destructuring Object</h2>
     <script>
-        let user = {
-            objName: 'Ankit ',
-            objAge:25,
-            objCity: 'Delhi'
-        }
-        let {objName : fn , objAge : a, objCity : c} = user;
-        console.log(fn + a + c);
+      let user = {
+        objName: "Ankit ",
+        objAge: 25,
+        objCity: "Delhi",
+      };
+      let { objName: fn, objAge: a, objCity: c } = user;
+      console.log(fn + a + c);
     </script>
 
     <h2>Destructuring Array</h2>
     <script>
-        // old way
-        let fullArr = ['Ankit',25,'Delhi'];
-        // let arrName = fullArr[0];
-        // let arrAge = fullArr[1];
-        // console.log(arrAge + arrName);
+      // old way
+      let fullArr = ["Ankit", 25, "Delhi"];
+      // let arrName = fullArr[0];
+      // let arrAge = fullArr[1];
+      // console.log(arrAge + arrName);
 
-        // new way
-        let[arrName = 'Name',arrAge = 18,arrCity = 'Goa'] = fullArr;
-        console.log(arrName,arrAge,arrCity);
-        function arrFunc(name,age,city){
-            console.log(name + age + city)
-        }
-        arrFunc('Rishab ',25,' Mumbai');
-        console.log()
-        
+      // new way
+      let [arrName = "Name", arrAge = 18, arrCity = "Goa"] = fullArr;
+      console.log(arrName, arrAge, arrCity);
+      function arrFunc(name, age, city) {
+        console.log(name + age + city);
+      }
+      arrFunc("Rishab ", 25, " Mumbai");
+      console.log();
     </script>
-    
+
     <h2>Object litrel</h2>
     <script>
-        var name = "Ankit";
-        var age = 25;
-        var n = 'Class'
-        var objLit = {
-           // old way
-            // name : name,
-            // age : age
+      var name = "Ankit";
+      var age = 25;
+      var n = "Class";
+      var objLit = {
+        // old way
+        // name : name,
+        // age : age
 
-            //new way
-            [n + 'Section']:'12b',
-            name,
-            age
-        }
-        console.log(objLit)
+        //new way
+        [n + "Section"]: "12b",
+        name,
+        age,
+      };
+      console.log(objLit);
     </script>
 
     <h2>spread operator</h2>
     <script>
-        function sum(name,...arg){
-            let sum = 0;
-            for(let i in arg){
-                sum += arg[i];
-            }
-            console.log(`hello ${name} marks ${sum} / 100 `)
+      function sum(name, ...arg) {
+        let sum = 0;
+        for (let i in arg) {
+          sum += arg[i];
         }
-        var sumVal = [20,50,30]
-        sum('Ankit',...sumVal); // spread operator
-        sum('Suraj',50,20,10);
+        console.log(`hello ${name} marks ${sum} / 100 `);
+      }
+      var sumVal = [20, 50, 30];
+      sum("Ankit", ...sumVal); // spread operator
+      sum("Suraj", 50, 20, 10);
     </script>
 
     <h2>Rest opertor</h2>
     <script>
-        // old 1 without rest opretor
-        function sum1(a,b){
-            return a + b;
-        }
-        var prntSum1 = sum1(20,30);
-        // var prntSum1 = sum1(20,30,40);
-        // var prntSum1 = sum1("Ankit",20,30);
-        console.log(prntSum1);
+      // old 1 without rest opretor
+      function sum1(a, b) {
+        return a + b;
+      }
+      var prntSum1 = sum1(20, 30);
+      // var prntSum1 = sum1(20,30,40);
+      // var prntSum1 = sum1("Ankit",20,30);
+      console.log(prntSum1);
 
-        // with rest opretor with for in loop
-        function sum2(name,...arg){
-            var sum2 = 0;
-            for(let i in arg){
-                sum2 += arg[i];
-            }
-            console.log(`Name is ${name} and marks is ${sum2}`);
+      // with rest opretor with for in loop
+      function sum2(name, ...arg) {
+        var sum2 = 0;
+        for (let i in arg) {
+          sum2 += arg[i];
         }
-        sum2(20,30);
-        sum2(20,30,40);
-        sum2("Ankit",20,30,40);
-     </script>
+        console.log(`Name is ${name} and marks is ${sum2}`);
+      }
+      sum2(20, 30);
+      sum2(20, 30, 40);
+      sum2("Ankit", 20, 30, 40);
+    </script>
 
     <h2>Arrow Function</h2>
     <span class="arrOld1"></span>
     <span class="arrOld2"></span>
     <span class="arrFunc"></span>
-     <script>
-        // old way
-        function hello(){
-           return 'Hello Ankit  u r welcome'
-        }
-        document.querySelector('.arrOld1').innerHTML = `1. old way => ${hello()}`;
-        var arrOldFnc = function(){
-           return 'Hello Ankit  u r welcome again'
-        };
-        document.querySelector('.arrOld2').innerHTML = `2. old way => ${arrOldFnc()} <br>`;
+    <script>
+      // old way
+      function hello() {
+        return "Hello Ankit  u r welcome";
+      }
+      document.querySelector(".arrOld1").innerHTML = `1. old way => ${hello()}`;
+      var arrOldFnc = function () {
+        return "Hello Ankit  u r welcome again";
+      };
+      document.querySelector(
+        ".arrOld2"
+      ).innerHTML = `2. old way => ${arrOldFnc()} <br>`;
 
-        // arrow function
-        let arrNew = ()=> 'Arrow Functio is awosome'
-        document.querySelector('.arrFunc').innerHTML = arrNew();
-
-     </script>
+      // arrow function
+      let arrNew = () => "Arrow Functio is awosome";
+      document.querySelector(".arrFunc").innerHTML = arrNew();
+    </script>
 
     <h2>Template litral or template string</h2>
-    <p>var a =  'Ankit'</p>
+    <p>var a = 'Ankit'</p>
     <p>`hello ${a}` = <span class="tmpStr"></span></p>
     <script>
-        var tmpTrgt = document.querySelector('.tmpStr');
-        var tmpStr = 'Ankit Kumar';
-        tmpTrgt.innerHTML = `Hello Mr. ${tmpStr}`;
-        //
-        let fname = 'Ankit';
-        let lname = 'Kumar';
-        function fullName(fname,lname){
-            return `${fname} ${lname}`;
-        }
-        var strName = `he110 ${fullName(fname,lname)}`
-        console.log(strName)
+      var tmpTrgt = document.querySelector(".tmpStr");
+      var tmpStr = "Ankit Kumar";
+      tmpTrgt.innerHTML = `Hello Mr. ${tmpStr}`;
+      //
+      let fname = "Ankit";
+      let lname = "Kumar";
+      function fullName(fname, lname) {
+        return `${fname} ${lname}`;
+      }
+      var strName = `he110 ${fullName(fname, lname)}`;
+      console.log(strName);
     </script>
 
     <h2>json and ajax</h2>
     <div id="jsonData"></div>
     <script
-  src="https://code.jquery.com/jquery-3.7.1.js"
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-  crossorigin="anonymous"></script>
-  <script>
-    $(document).ready(function(){
+      src="https://code.jquery.com/jquery-3.7.1.js"
+      integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).ready(function () {
         $.ajax({
-            url:"https://jsonplaceholder.typicode.com/posts",
-            type:"GET",
-            success: function(data){
-                // $('#jsonData').append('id : ' + data.id + '<br>' + 'body : ' + data.body + '<br>' + 'title : ' + data.title + '<br>' + 'userId : ' + data.userId + '<br>');
-                $.each(data,function(key ,value){
-                    $('#jsonData').append( 'id : ' + value.id + '<br>' + 'body : ' + value.body + '<br>' + 'title : ' + value.title + '<br>' + 'userId : ' + value.userId + '<br><br>');
-                    // console.log(value.id);
-                })
-            
-            }
+          url: "https://jsonplaceholder.typicode.com/posts",
+          type: "GET",
+          success: function (data) {
+            // $('#jsonData').append('id : ' + data.id + '<br>' + 'body : ' + data.body + '<br>' + 'title : ' + data.title + '<br>' + 'userId : ' + data.userId + '<br>');
+            $.each(data, function (key, value) {
+              $("#jsonData").append(
+                "id : " +
+                  value.id +
+                  "<br>" +
+                  "body : " +
+                  value.body +
+                  "<br>" +
+                  "title : " +
+                  value.title +
+                  "<br>" +
+                  "userId : " +
+                  value.userId +
+                  "<br><br>"
+              );
+              // console.log(value.id);
+            });
+          },
         });
-    });
-  </script>
-  <script type="module" src="./js/main.js"></script>
-</body>
+      });
+    </script>
+    <!-- <script type="module" src="./js/main.js"></script> -->
+  </body>
 </html>

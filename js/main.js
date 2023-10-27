@@ -1,5 +1,10 @@
 
-export var xyz = 'Ayush Arya';
+import {xyz,Again as ag,self} from './advance.js';
+console.log(xyz());
+ag();
+let ba = new self('Ankit',25);
+ba.myself()
+// console.log(bca);
 // ctrlKey,altKey,shiftKey and metaKey
 var trgtCtrKey = document.querySelector('#ctrlKey');
 var trgtAltKey = document.querySelector('#altKey');
